@@ -6,8 +6,6 @@
  (function() {
 'use strict';
 var _          = require('lodash')
-var S          = require('underscore.string')
-var replaceAll = S.replaceAll
 var mapping   = {
   '.': '<>d',
   '$': '<>s',
@@ -26,6 +24,16 @@ function reverseMap() {
 reverseMap()
 
 
+function replaceAll(str, from, to) {
+  var old = ''
+  for (var i=0, len=str.length; i < len && old != str; i++) {
+    old = str
+    str = str.replace(from, to)
+  }
+  return str
+}
+
+
 function config(map) {
   map = map || {}
   mapping = _.extend(map)
@@ -41,7 +49,7 @@ function applyMap(obj, map) {
   }
   var result = {}
   for (var i in obj) {
-    var key = applyMap(obj, map)
+    var key = applyMap(i, map)
     result[key] = obj[i]
   }
   return result
