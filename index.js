@@ -52,7 +52,7 @@ function applyMap(obj, map) {
   for (var i in obj) {
     var key     = applyMap(i, map)
     var value   = obj[i]
-    if (_.isObject(value) value = applyMap(value) // apply to child keys
+    if (_.isObject(value)) value = applyMap(value) // apply to child keys
     result[key] = value
   }
   return result
