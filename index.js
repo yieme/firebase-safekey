@@ -4,33 +4,66 @@
  *  @module     firebase-safekey
  */
  (function() {
-  'use strict';
-  var FirebaseSafekeyError = require('make-error')('FirebaseSafekeyError')
+'use strict';
+var _          = require('lodash')
+var S          = require('underscore.string')
+var replaceAll = S.replaceAll
+var mapping   = {
+  '.': '<>d',
+  '$': '<>s',
+  '#': '<>p',
+  '[': '<>o',
+  ']': '<>c',
+  '/': '<>S'
+}
+var reverse = {}
+function reverseMap() {
+  reverse = {}
+  _.forEach(mapping, function(n, key) {
+    reverse[n] = key
+  })
+}
+reverseMap()
 
-  /** Firebase safekey
-   *  @class
-   *  @param      {object} options - The options
-   *  @return     {object}
-   */
-  function firebaseSafekeyClass(options) {
-    /*jshint validthis: true */
-    var self = this
-    options = options || {}
-    self.value = options
-    return self
+
+function config(map) {
+  map = map || {}
+  mapping = _.extend(map)
+}
+
+
+function applyMap(obj, map) {
+  if ('string' == typeof obj) {
+    _.forEach(map, function(replace, find) {
+      obj = replaceAll(obj, find, replace)
+    })
+    return obj
   }
-
-
-
-  /** Firebase safekey
-   *  @constructor
-   *  @param      {object} options - The options
-   *  @return     {object}
-   */
-  function firebaseSafekey(options) {
-    return new firebaseSafekeyClass(options).value
+  var result = {}
+  for (var i in obj) {
+    var key = applyMap(obj, map)
+    result[key] = obj[i]
   }
+  return result
+}
 
 
-  module.exports = firebaseSafekey
+function safeKey(obj, map) {
+  map = map || mapping
+  return applyMap(obj, map)
+}
+
+
+function restoreKey(obj, map) {
+  map = map || reverse
+  return applyMap(obj, map)
+}
+
+
+module.exports = {
+  config:   config,
+  safe:     safeKey,
+  restore:  restoreKey
+}
+
 })();
