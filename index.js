@@ -24,15 +24,6 @@ function reverseMap() {
 reverseMap()
 
 
-function replaceAll(str, from, to) {
-  var old = ''
-  for (var i=0, len=str.length; i < len && old != str; i++) {
-    old = str
-    str = str.replace(from, to)
-  }
-  return str
-}
-
 
 function config(map) {
   map = map || {}
@@ -44,14 +35,16 @@ function config(map) {
 function applyMap(obj, map) {
   if ('string' == typeof obj) {
     _.forEach(map, function(replace, find) {
-      obj = replaceAll(obj, find, replace)
+      obj = obj.replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace)
     })
     return obj
   }
-  var result = {}
+  var result    = {}
   for (var i in obj) {
-    var key = applyMap(i, map)
-    result[key] = obj[i]
+    var key     = applyMap(i, map)
+    var value   = obj[i]
+    if (_.isObject(value) value = applyMap(value) // apply to child keys
+    result[key] = value
   }
   return result
 }
