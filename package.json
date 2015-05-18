@@ -1,0 +1,40 @@
+{
+  "name": "firebase-safekey",
+  "version": "0.1.0",
+  "description": "Safe Firebase keys as it doesn't like ., $, #, [, ], or /. in it's keys",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "doctoc": "doctoc README.md && if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != '' ]]; then git add README.md && git commit --no-verify -m 'table of contents update'; fi",
+    "test": "mocha -R list test/*.js"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yieme/firebase-safekey"
+  },
+  "keywords": ["firebase","safekey"],
+  "author": "yieme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yieme/firebase-safekey/issues"
+  },
+  "dependencies": { 
+    "make-error": "^1.0.2"
+  },
+  "devDependencies": {
+    "object-attributes": "~0.1.1",
+    "chai": "~1.10.0"
+  },
+  "globalDependencies": {
+    "jshint": "^2.7.0",
+    "mocha": "~2.1.0"
+  },
+  "generatedBy": {
+    "name": "generator-pkg",
+    "version": "0.9.8",
+    "url": "https://github.com/yieme/generator-pkg"
+  }
+}
