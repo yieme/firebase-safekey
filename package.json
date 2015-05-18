@@ -1,6 +1,6 @@
 {
   "name": "firebase-safekey",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Safe Firebase keys as it doesn't like ., $, #, [, ], or /. in it's keys",
   "main": "index.js",
   "scripts": {
