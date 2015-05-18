@@ -42,8 +42,8 @@ fkey.config({ // default mapping
 Or apply your mapping during safe, restore operations
 
 ```js
-var safekey   = fkey.safe('1.1.2',    { '.': ':' }) // 1:1:2
-var resutored = fkey.restore(safekey, {':': '.' })  // 1.1.2
+var safekey   = fkey.safe('1.1.2',   { '.': ':' }) // 1:1:2
+var restored = fkey.restore(safekey, { ':': '.' }) // 1.1.2
 ```
 
 ## Rights
