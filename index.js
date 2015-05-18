@@ -32,10 +32,19 @@ function config(map) {
 }
 
 
+function replaceAll(str, from, to) {
+  var old = ''
+  for (var i=0, len=str.length; i < len && old != str; i++) {
+    old = str
+    str = str.replace(from, to)
+  }
+  return str
+}
+
 function applyMap(obj, map) {
   if ('string' == typeof obj) {
     _.forEach(map, function(replace, find) {
-      obj = obj.replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace).replace(find, replace)
+      obj = replaceAll(obj, find, replace)
     })
     return obj
   }
