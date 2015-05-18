@@ -37,6 +37,7 @@ function replaceAll(str, from, to) {
 function config(map) {
   map = map || {}
   mapping = _.extend(map)
+  reverseMap()
 }
 
 
