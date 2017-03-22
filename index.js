@@ -42,9 +42,9 @@ function replaceAll(str, from, to) {
 }
 
 function applyMap(obj, map) {
-  if ('string' == typeof obj) {
+  if ('string' == typeof obj || 'number' == typeof obj) {
     _.forEach(map, function(replace, find) {
-      obj = replaceAll(obj, find, replace)
+      obj = replaceAll(obj.toString(), find, replace)
     })
     return obj
   }
