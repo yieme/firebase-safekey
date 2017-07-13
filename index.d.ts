@@ -3,7 +3,9 @@
  */
 
 declare module 'firebase-safekey' {
-  let restore: (key: string) => string;
-  let safe: (key: string) => string;
-  export { restore, safe };
+  type Mapping = {[from: string]: string};
+
+  export function safe<T>(input: T, mapping?: Mapping): T;
+  export function restore<T>(input: T, mapping?: Mapping): T;
+  export function config(mapping?: Mapping): any;
 }
